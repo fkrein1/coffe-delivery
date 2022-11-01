@@ -22,4 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
   }
+
+  h1, h2 {
+    font-family: 'Baloo 2', cursive;
+  }
 `;
