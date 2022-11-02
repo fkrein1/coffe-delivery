@@ -11,6 +11,10 @@ export const HeaderContainer = styled.header`
     width: 90px;
     height: 40px;
   }
+
+  @media (max-width: 768px) {
+    margin-inline: 80px;
+  }
 `;
 
 export const IconsContainer = styled.div`
@@ -19,7 +23,9 @@ export const IconsContainer = styled.div`
   align-items: center;
 `;
 
-export const LocationIcon = styled.div`
+export const LocationIcon = styled.button`
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   border-radius: 6px;
@@ -32,7 +38,9 @@ export const LocationIcon = styled.div`
   }
 `;
 
-export const CheckoutIcon = styled.div`
+export const CheckoutIcon = styled.button`
+  border: none;
+  cursor: pointer;
   border-radius: 6px;
   padding: 6px;
   background: ${(props) => props.theme['yellow-light']};

@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import backgroundImage from '../../assets/background.svg';
 
 export const HomeContainer = styled.section`
+
+`;
+
+export const HeroContainer = styled.section`
   display: flex;
   align-items: flex-start;
   gap: 56px;
@@ -10,21 +14,19 @@ export const HomeContainer = styled.section`
   backdrop-filter: blur(80px);
   background-image: url(${backgroundImage});
   background-size: 100% auto;
-
-  @media (max-width: 900px) {
-    flex-wrap: wrap;
-
-    @media (max-width: 640px) {
-      padding-block: 46px;
-      padding-inline: 80px;
-    }
+  @media (max-width: 768px) {
+    padding-block: 46px;
+    padding-inline: 80px;
   }
-`;
+`
 
 export const HeroImage = styled.div`
   flex: 1 1 45%;
   img {
     width: 100%;
+  }
+  @media (max-width: 1024px) {
+    display: none
   }
 `;
 
@@ -42,11 +44,11 @@ export const BenefitsContainer = styled.div`
     font-size: 20px;
     line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
-    margin-bottom: 65px;
   }
 `;
 
 export const BenefitsList = styled.ul`
+  margin-top: 65px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   line-height: 130%;
@@ -55,6 +57,8 @@ export const BenefitsList = styled.ul`
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
     gap: 20px;
+    
+
   }
 `;
 
