@@ -59,6 +59,7 @@ export const Description = styled.p`
 `;
 
 export const Price = styled.p`
+  margin-top: auto;
   margin-bottom: 10px;
   text-align: right;
   font-size: 14px;
@@ -75,7 +76,6 @@ export const Price = styled.p`
 export const AddToCartContainer = styled.div`
   margin-inline: 24px;
   gap: 10px;
-  margin-top: auto;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
@@ -88,16 +88,14 @@ export const QtySelectors = styled.div`
   align-items: center;
   align-content: center;
 
-
   button,
   div {
     background: ${(props) => props.theme['base-button']};
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 38px;
     height: 38px;
-  }
-
-  div {
-    padding-top: 8px;
   }
 
   button {
@@ -126,6 +124,10 @@ export const AddtoCartButton = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  :hover {
+    background: ${(props) => props.theme.purple};
+  }
 
   svg {
     width: 20px;
