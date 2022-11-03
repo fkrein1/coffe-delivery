@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 interface CartContextProviderProps {
   children: ReactNode;
@@ -23,6 +23,16 @@ export const CartContext = createContext({} as CartContextType);
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState([] as Cart[]);
+
+  useEffect(() => {
+    const savedCartString = localStorage.getItem('coffee-delivery-1.0.0-cart');
+    if (!savedCartString) {
+      return;
+    }
+    const savedCart = JSON.parse(savedCartString) as Cart[];
+
+    setCart(savedCart);
+  }, []);
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>

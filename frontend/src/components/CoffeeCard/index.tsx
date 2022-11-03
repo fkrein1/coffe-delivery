@@ -38,7 +38,12 @@ export function CoffeeCard(props: CoffeeCardProps) {
 
   function handleAddToCart() {
     if (!coffeeOnCart) {
-      return setCart((prev) => [...prev, { ...props, quantity }]);
+      const newCart = [...cart, { ...props, quantity }];
+      localStorage.setItem(
+        'coffee-delivery-1.0.0-cart',
+        JSON.stringify(newCart),
+      );
+      return setCart((prev) => newCart);
     }
     if (coffeeOnCart) {
       const newCart = cart.map((coffee) => {
@@ -47,6 +52,10 @@ export function CoffeeCard(props: CoffeeCardProps) {
         }
         return coffee;
       });
+      localStorage.setItem(
+        'coffee-delivery-1.0.0-cart',
+        JSON.stringify(newCart),
+      );
       return setCart((prev) => newCart);
     }
   }

@@ -60,7 +60,7 @@ export const CheckoutIcon = styled.button`
     width: 20px;
     height: 20px;
     right: -8.35px;
-    top: -8px;
+    top: -10px;
     z-index: 1;
     color: ${(props) => props.theme.white};
     font-weight: 700;
