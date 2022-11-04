@@ -9,7 +9,11 @@ interface Coffees {
   image: string;
 }
 
+const SERVER_URL = import.meta.env.PROD
+  ? import.meta.env.VITE_SERVER_URL_PROD
+  : import.meta.env.VITE_SERVER_URL_DEV;
+
 export async function getCoffee(): Promise<Coffees[]> {
-  const { data } = await axios.get('http://localhost:3008/coffees');
+  const { data } = await axios.get(`${SERVER_URL}/coffees`);
   return data;
 }

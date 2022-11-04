@@ -1,5 +1,6 @@
 import { Trash } from 'phosphor-react';
 import { useContext } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { CartContext } from '../../../../context/CartContext';
 import {
   CoffeCard,
@@ -18,8 +19,14 @@ import {
 
 export function OrderSummary() {
   const { cart, setCart } = useContext(CartContext);
-  
+  const { watch } = useFormContext();
+  const zipInput = watch('zip');
+  const zipRegex = /^[0-9]{8}$/g;
+  const validZipInput = zipRegex.test(zipInput);
   const isCartEmpty = cart.length === 0;
+
+  const submitOrderButtonDisabled = isCartEmpty || !validZipInput;
+
   const shipping = isCartEmpty ? 0 : 4.9;
   const subTotal = cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
   const totalOrder = shipping + subTotal;
@@ -29,7 +36,10 @@ export function OrderSummary() {
       if (coffee.id === id) return { ...coffee, quantity: coffee.quantity + 1 };
       return coffee;
     });
-    localStorage.setItem('coffee-delivery-1.0.0-cart', JSON.stringify(newCart));
+    localStorage.setItem(
+      `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
+      JSON.stringify(newCart),
+    );
     setCart(newCart);
   }
 
@@ -39,13 +49,19 @@ export function OrderSummary() {
         return { ...coffee, quantity: Math.max(coffee.quantity - 1, 1) };
       return coffee;
     });
-    localStorage.setItem('coffee-delivery-1.0.0-cart', JSON.stringify(newCart));
+    localStorage.setItem(
+      `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
+      JSON.stringify(newCart),
+    );
     setCart(newCart);
   }
 
   function handleRemoveCoffee(id: string) {
     const newCart = cart.filter((coffee) => coffee.id !== id);
-    localStorage.setItem('coffee-delivery-1.0.0-cart', JSON.stringify(newCart));
+    localStorage.setItem(
+      `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
+      JSON.stringify(newCart),
+    );
     setCart(newCart);
   }
 
@@ -92,7 +108,9 @@ export function OrderSummary() {
             <span>Total</span>
             <p>{`R$${totalOrder.toFixed(2).replace('.', ',')}`}</p>
           </Total>
-          <button type="submit" disabled={isCartEmpty}>Confirmar pedido</button>
+          <button type="submit" disabled={submitOrderButtonDisabled}>
+            Confirmar pedido
+          </button>
         </PriceSummary>
       </CoffeeContainer>
     </OrderSummaryContainer>

@@ -25,7 +25,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState([] as Cart[]);
 
   useEffect(() => {
-    const savedCartString = localStorage.getItem('coffee-delivery-1.0.0-cart');
+    const savedCartString = localStorage.getItem(
+      `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
+    );
     if (!savedCartString) {
       return;
     }

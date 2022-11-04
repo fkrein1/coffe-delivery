@@ -40,7 +40,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
     if (!coffeeOnCart) {
       const newCart = [...cart, { ...props, quantity }];
       localStorage.setItem(
-        'coffee-delivery-1.0.0-cart',
+        `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
         JSON.stringify(newCart),
       );
       return setCart((prev) => newCart);
@@ -53,7 +53,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
         return coffee;
       });
       localStorage.setItem(
-        'coffee-delivery-1.0.0-cart',
+        `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
         JSON.stringify(newCart),
       );
       return setCart((prev) => newCart);
