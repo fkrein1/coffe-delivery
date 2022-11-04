@@ -18,8 +18,9 @@ import {
 
 export function OrderSummary() {
   const { cart, setCart } = useContext(CartContext);
-
-  const shipping = 4.9;
+  
+  const isCartEmpty = cart.length === 0;
+  const shipping = isCartEmpty ? 0 : 4.9;
   const subTotal = cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
   const totalOrder = shipping + subTotal;
 
@@ -91,7 +92,7 @@ export function OrderSummary() {
             <span>Total</span>
             <p>{`R$${totalOrder.toFixed(2).replace('.', ',')}`}</p>
           </Total>
-          <button>Confirmar pedido</button>
+          <button type="submit" disabled={isCartEmpty}>Confirmar pedido</button>
         </PriceSummary>
       </CoffeeContainer>
     </OrderSummaryContainer>

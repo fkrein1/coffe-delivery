@@ -64,6 +64,7 @@ export const QtySelectors = styled.div`
 
   button:nth-child(1) {
     border-radius: 6px 0 0 6px;
+    z-index: 1;
   }
 
   button:nth-child(3) {
@@ -135,8 +136,12 @@ export const PriceSummary = styled.div`
     line-height: 160%;
     color: ${(props) => props.theme.white};
     cursor: pointer;
-    :hover {
+    &:not(:disabled):hover {
       background: ${(props) => props.theme['yellow-dark']};
+    }
+    &:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
     }
   }
 `;

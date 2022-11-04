@@ -1,9 +1,10 @@
-import { useCoffees } from '../../hooks/useCoffees';
+import { useQuery } from '@tanstack/react-query';
+import { getCoffee } from '../../services/getCoffee';
 import { CoffeeCard } from '../CoffeeCard';
 import { ShelfContainer, ShelfGrid } from './styles';
 
 export function CoffeeShelf() {
-  const { data } = useCoffees();
+  const { data } = useQuery(['coffees'], getCoffee);
 
   return (
     <ShelfContainer>

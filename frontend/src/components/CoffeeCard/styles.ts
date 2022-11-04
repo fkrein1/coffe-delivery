@@ -106,6 +106,7 @@ export const QtySelectors = styled.div`
 
   button:nth-child(1) {
     border-radius: 6px 0 0 6px;
+    z-index: 1;
   }
 
   button:nth-child(3) {

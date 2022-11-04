@@ -17,6 +17,7 @@ export const AddressContainer = styled.div`
     background: ${(props) => props.theme['base-input']};
     border: 1px solid ${(props) => props.theme['base-button']};
     border-radius: 4px;
+    max-height: 42px;
   }
 `;
 
@@ -50,7 +51,6 @@ export const AddressSummary = styled.div`
 `;
 
 export const Zip = styled.div`
-  display: flex;
   input {
     flex-basis: 35%;
   }
@@ -68,11 +68,15 @@ export const Number = styled.div`
     flex-direction: column;
   }
 
-  input:nth-child(1) {
+  input {
+    width: 100%;
+  }
+
+  div:nth-child(1) {
     flex-basis: 35%;
   }
 
-  input:nth-child(2) {
+  div:nth-child(2) {
     flex-basis: 65%;
   }
   span {
@@ -81,7 +85,7 @@ export const Number = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-label']};
     left: calc(100% - 60px);
-    bottom: 13px;
+    top: 13px;
   }
 `;
 export const City = styled.div`
@@ -91,16 +95,24 @@ export const City = styled.div`
     flex-direction: column;
   }
 
-  input:nth-child(1) {
+  div:nth-child(1) {
     flex-basis: 40%;
+    input {
+      width: 100%;
+    }
   }
 
-  input:nth-child(2) {
+  div:nth-child(2) {
     flex-basis: 60%;
+    input {
+      width: 100%;
+    }
   }
 
-  input:nth-child(3) {
-    max-width: 60px;
+  div:nth-child(3) {
+    input {
+      max-width: 100px;
+    }
   }
 `;
 
@@ -190,4 +202,13 @@ export const PaymentTypes = styled.div`
     -o-appearance: none;
     appearance: none;
   }
+`;
+
+export const FormError = styled.p`
+  color: red;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  margin-top: 5px;
+  margin-left: 12px;
 `;
