@@ -142,7 +142,7 @@ export function OrderInputs() {
               type="radio"
               id={PaymentOptions.Credit}
               value={PaymentOptions.Credit}
-              {...register('payment')}
+              {...register('paymentMethod')}
             />
             <CreditCard />
             <span>Crédito</span>
@@ -152,7 +152,7 @@ export function OrderInputs() {
               type="radio"
               id={PaymentOptions.Debit}
               value={PaymentOptions.Debit}
-              {...register('payment')}
+              {...register('paymentMethod')}
             />
             <Bank />
             <span>Débito</span>
@@ -162,13 +162,13 @@ export function OrderInputs() {
               type="radio"
               id={PaymentOptions.Cash}
               value={PaymentOptions.Cash}
-              {...register('payment')}
+              {...register('paymentMethod')}
             />
             <Money />
             <span>Dinheiro</span>
           </label>
         </PaymentTypes>
-        <FormError>{errors.payment?.message as string}</FormError>
+        <FormError>{errors.paymentMethod?.message as string}</FormError>
       </PaymentContainer>
     </OrderFormContainer>
   );

@@ -1,6 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { useContext } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as zod from 'zod';
+import { CartContext } from '../../context/CartContext';
+import { createOrder } from '../../services/createOrder';
 import { OrderInputs } from './Components/OrderInputs';
 import { OrderSummary } from './Components/OrderSummary';
 import { CheckoutForm } from './styles';
@@ -19,7 +23,7 @@ const checkoutFormValidationSchema = zod.object({
   neighborhood: zod.string().min(1, 'Informe o bairro'),
   city: zod.string().min(1, 'Informe a cidade'),
   state: zod.string().min(2, 'Informe o UF'),
-  payment: zod.nativeEnum(PaymentOptions, {
+  paymentMethod: zod.nativeEnum(PaymentOptions, {
     errorMap: () => {
       return { message: 'Informe o método de pagamento' };
     },
@@ -29,6 +33,8 @@ const checkoutFormValidationSchema = zod.object({
 export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>;
 
 export function Checkout() {
+  const navigate = useNavigate();
+  const { cart, setCart } = useContext(CartContext);
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormValidationSchema),
     defaultValues: {
@@ -44,14 +50,21 @@ export function Checkout() {
 
   const { handleSubmit } = checkoutForm;
 
-  const onSubmit: SubmitHandler<CheckoutFormData> = (data) => console.log(data);
-
-  function handleSubmitOrder(data: CheckoutFormData) {
-    // console.log(data);
+  async function submitOrder(data: CheckoutFormData) {
+    const itemsPayload = cart.map((coffee) => {
+      return { id: coffee.id, quantity: coffee.quantity };
+    });
+    const newOrder = await createOrder({ ...data, coffees: itemsPayload });
+    setCart([]);
+    localStorage.setItem(
+      `${import.meta.env.VITE_LOCAL_STORAGE_KEY}-cart`,
+      JSON.stringify([]),
+    );
+    navigate(`/order/${newOrder.id}`);
   }
 
   return (
-    <CheckoutForm onSubmit={handleSubmit(onSubmit)}>
+    <CheckoutForm onSubmit={handleSubmit(submitOrder)}>
       <FormProvider {...checkoutForm}>
         <OrderInputs />
         <OrderSummary />

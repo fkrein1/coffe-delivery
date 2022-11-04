@@ -36,7 +36,7 @@ export function Order() {
               <span>
                 Entrega em <strong>{`${data?.street}, ${data?.number}`}</strong>
               </span>
-              <span>{`${data?.neighborhood} - ${data?.city}, ${data?.uf}`}</span>
+              <span>{`${data?.neighborhood} - ${data?.city}, ${data?.state}`}</span>
             </div>
           </AddressInfo>
           <DeliveryInfo>
