@@ -6,9 +6,9 @@ import { OrderSummary } from './Components/OrderSummary';
 import { CheckoutForm } from './styles';
 
 export enum PaymentOptions {
-  Credit = 'Credit',
-  Debit = 'Debit',
-  Cash = 'Cash',
+  Credit = 'Cartão de Crédito',
+  Debit = 'Cartão de Débito',
+  Cash = 'Dinheiro',
 }
 
 const checkoutFormValidationSchema = zod.object({

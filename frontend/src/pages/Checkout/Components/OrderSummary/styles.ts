@@ -140,7 +140,7 @@ export const PriceSummary = styled.div`
       background: ${(props) => props.theme['yellow-dark']};
     }
     &:disabled {
-      opacity: 0.8;
+      opacity: 0.7;
       cursor: not-allowed;
     }
   }

@@ -69,7 +69,7 @@ export function OrderInputs() {
             type="text"
             placeholder="CEP"
             inputMode="numeric"
-            maxLength={9}
+            maxLength={8}
             {...register('zip')}
           />
           <FormError>{errors.zip?.message as string}</FormError>
