@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   padding-inline: 160px;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background: ${(props) => props.theme.background};
 
   > img {

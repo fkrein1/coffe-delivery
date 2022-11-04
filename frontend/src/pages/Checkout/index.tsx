@@ -13,7 +13,7 @@ const checkoutFormValidationSchema = zod.object({
   neighborhood: zod.string().min(1, 'Informe o bairro'),
   city: zod.string().min(1, 'Informe a cidade'),
   state: zod.string().min(2, 'Informe o UF'),
-  payment: zod.string().min(1, 'Informe o meio de pagamento')
+  payment: zod.string().min(1, 'Informe o meio de pagamento'),
 });
 
 export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>;
@@ -33,10 +33,7 @@ export function Checkout() {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = checkoutForm;
+  const { handleSubmit } = checkoutForm;
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => console.log(data);
 

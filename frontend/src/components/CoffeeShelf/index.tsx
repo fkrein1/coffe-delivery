@@ -9,7 +9,6 @@ export function CoffeeShelf() {
   return (
     <ShelfContainer>
       <h2>Nossos cafés</h2>
-
       <ShelfGrid>
         {data?.map((coffee) => (
           <CoffeeCard

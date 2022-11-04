@@ -28,13 +28,11 @@ export function OrderInputs() {
     watch,
     setValue,
     reset,
-    getValues,
     formState: { errors },
   } = useFormContext();
   const zipInput = watch('zip');
   const zipRegex = /^[0-9]{8}$/g;
   const validZipInput = zipRegex.test(zipInput);
-  const filledStreetInputValue = getValues('street');
 
   useEffect(() => {
     const findZipCode = async () => {
@@ -51,12 +49,6 @@ export function OrderInputs() {
     };
     if (validZipInput) {
       findZipCode();
-    }
-    if (!validZipInput && filledStreetInputValue) {
-      setValue('street', '');
-      setValue('neighborhood', '');
-      setValue('city', '');
-      setValue('state', '');
     }
   }, [zipInput]);
 
@@ -75,53 +67,62 @@ export function OrderInputs() {
           <input
             type="text"
             placeholder="CEP"
-            maxLength={8}
+            inputMode="numeric"
+            maxLength={9}
             {...register('zip')}
           />
           <FormError>{errors.zip?.message as string}</FormError>
         </Zip>
-        <Street>
-          <input type="text" placeholder="Rua" {...register('street')} />
-          <FormError>{errors.street?.message as string}</FormError>
-        </Street>
-        <Number>
-          <div>
-            <input type="text" placeholder="Número" {...register('number')} />
-            <FormError>{errors.number?.message as string}</FormError>
-          </div>
+        {validZipInput && (
+          <>
+            <Street>
+              <input type="text" placeholder="Rua" {...register('street')} />
+              <FormError>{errors.street?.message as string}</FormError>
+            </Street>
+            <Number>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Número"
+                  {...register('number')}
+                />
+                <FormError>{errors.number?.message as string}</FormError>
+              </div>
 
-          <div>
-            <input
-              type="text"
-              placeholder="Complemento"
-              {...register('complement')}
-            />
-            <span>Opcional</span>
-          </div>
-        </Number>
-        <City>
-          <div>
-            <input
-              type="text"
-              placeholder="Bairro"
-              {...register('neighborhood')}
-            />
-            <FormError>{errors.neighborhood?.message as string}</FormError>
-          </div>
-          <div>
-            <input type="text" placeholder="Cidade" {...register('city')} />
-            <FormError>{errors.city?.message as string}</FormError>
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="UF"
-              maxLength={2}
-              {...register('state')}
-            />
-            <FormError>{errors.state?.message as string}</FormError>
-          </div>
-        </City>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Complemento"
+                  {...register('complement')}
+                />
+                <span>Opcional</span>
+              </div>
+            </Number>
+            <City>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Bairro"
+                  {...register('neighborhood')}
+                />
+                <FormError>{errors.neighborhood?.message as string}</FormError>
+              </div>
+              <div>
+                <input type="text" placeholder="Cidade" {...register('city')} />
+                <FormError>{errors.city?.message as string}</FormError>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="UF"
+                  maxLength={2}
+                  {...register('state')}
+                />
+                <FormError>{errors.state?.message as string}</FormError>
+              </div>
+            </City>
+          </>
+        )}
       </AddressContainer>
 
       <PaymentContainer>

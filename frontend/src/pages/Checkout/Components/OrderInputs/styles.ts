@@ -53,8 +53,19 @@ export const AddressSummary = styled.div`
 export const Zip = styled.div`
   input {
     flex-basis: 35%;
+    -moz-appearance: textfield;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `;
+
 export const Street = styled.div`
   input {
     width: 100%;
