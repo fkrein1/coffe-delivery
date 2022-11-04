@@ -21,13 +21,13 @@ model Coffee {
 
 model Order {
   id             String           @id @default(uuid())
-  cep            String
+  zip            String
   street         String
   number         String
   complement     String?
   neighborhood   String
   city           String
-  uf             String
+  state             String
   paymentMethod  String
   CoffesOnOrders CoffesOnOrders[]
 

@@ -6,13 +6,13 @@ const Coffee = z.object({
 });
 
 export const CreateOrderSchema = z.object({
-  cep: z.string().length(8),
+  zip: z.string().length(8),
   street: z.string(),
   number: z.string(),
   complement: z.string(),
   neighborhood: z.string(),
   city: z.string(),
-  uf: z.string(),
+  state: z.string(),
   paymentMethod: z.string(),
   coffees: z.array(Coffee),
 });

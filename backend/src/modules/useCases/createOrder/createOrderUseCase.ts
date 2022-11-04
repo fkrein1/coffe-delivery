@@ -11,13 +11,13 @@ export class CreateOrderUseCase {
 
     const newOrder = await prisma.order.create({
       data: {
-        cep: order.cep,
+        zip: order.zip,
         street: order.street,
         number: order.number,
         complement: order.complement,
         neighborhood: order.neighborhood,
         city: order.city,
-        uf: order.uf,
+        state: order.state,
         paymentMethod: order.paymentMethod,
       },
     });
