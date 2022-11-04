@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./dist/server",
+    "build": "tsc",
     "dev": "tsnd ./src/server"
   },
   "keywords": [],
