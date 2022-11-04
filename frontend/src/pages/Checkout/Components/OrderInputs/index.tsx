@@ -7,6 +7,7 @@ import {
 } from 'phosphor-react';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { PaymentOptions } from '../..';
 import { getAddress } from '../../../../services/getAddress';
 import {
   AddressContainer,
@@ -136,18 +137,33 @@ export function OrderInputs() {
           </div>
         </PaymentSummary>
         <PaymentTypes>
-          <label htmlFor="credit">
-            <input type="radio" id="credit" {...register('payment')} />
+          <label htmlFor={PaymentOptions.Credit}>
+            <input
+              type="radio"
+              id={PaymentOptions.Credit}
+              value={PaymentOptions.Credit}
+              {...register('payment')}
+            />
             <CreditCard />
             <span>Crédito</span>
           </label>
-          <label htmlFor="debit">
-            <input type="radio" id="debit" {...register('payment')} />
+          <label htmlFor={PaymentOptions.Debit}>
+            <input
+              type="radio"
+              id={PaymentOptions.Debit}
+              value={PaymentOptions.Debit}
+              {...register('payment')}
+            />
             <Bank />
             <span>Débito</span>
           </label>
-          <label htmlFor="cash">
-            <input type="radio" id="cash" {...register('payment')} />
+          <label htmlFor={PaymentOptions.Cash}>
+            <input
+              type="radio"
+              id={PaymentOptions.Cash}
+              value={PaymentOptions.Cash}
+              {...register('payment')}
+            />
             <Money />
             <span>Dinheiro</span>
           </label>

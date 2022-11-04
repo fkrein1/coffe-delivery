@@ -1,7 +1,7 @@
 import { Trash } from 'phosphor-react';
 import { useContext } from 'react';
-import { useFormContext } from 'react-hook-form';
 import { CartContext } from '../../../../context/CartContext';
+import { formatNumberTwoDecimals } from '../../../../utils/formatNumberTwoDecimals';
 import {
   CoffeCard,
   CoffeeContainer,
@@ -19,13 +19,8 @@ import {
 
 export function OrderSummary() {
   const { cart, setCart } = useContext(CartContext);
-  const { watch } = useFormContext();
-  const zipInput = watch('zip');
-  const zipRegex = /^[0-9]{8}$/g;
-  const validZipInput = zipRegex.test(zipInput);
-  const isCartEmpty = cart.length === 0;
 
-  const submitOrderButtonDisabled = isCartEmpty || !validZipInput;
+  const isCartEmpty = cart.length === 0;
 
   const shipping = isCartEmpty ? 0 : 4.9;
   const subTotal = cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
@@ -76,39 +71,48 @@ export function OrderSummary() {
               <Name>{coffee.name}</Name>
               <SelectorsContainer>
                 <QtySelectors>
-                  <button onClick={() => handleSubtractCoffeeQty(coffee.id)}>
+                  <button
+                    type="button"
+                    onClick={() => handleSubtractCoffeeQty(coffee.id)}
+                  >
                     -
                   </button>
                   <div>{coffee.quantity}</div>
-                  <button onClick={() => handleAddCoffeeQty(coffee.id)}>
+                  <button
+                    type="button"
+                    onClick={() => handleAddCoffeeQty(coffee.id)}
+                  >
                     +
                   </button>
                 </QtySelectors>
-                <RemoveButton onClick={() => handleRemoveCoffee(coffee.id)}>
+                <RemoveButton
+                  type="button"
+                  onClick={() => handleRemoveCoffee(coffee.id)}
+                >
                   <Trash />
                   <span>Remover</span>
                 </RemoveButton>
               </SelectorsContainer>
             </div>
-            <Price>{`R$${(coffee.price * coffee.quantity)
-              .toFixed(2)
-              .replace('.', ',')}`}</Price>
+            <Price>{`R$${formatNumberTwoDecimals(
+              coffee.price * coffee.quantity,
+            )}`}</Price>
           </CoffeCard>
         ))}
         <PriceSummary>
           <Subtotal>
             <span>Total de itens</span>
-            <p>{`R$${subTotal.toFixed(2).replace('.', ',')}`}</p>
+            <p>{`R$${formatNumberTwoDecimals(subTotal)}`}</p>
           </Subtotal>
           <Delivery>
             <span>Entrega</span>
-            <p>{`R$${shipping.toFixed(2).replace('.', ',')}`}</p>
+            <p>{`R$${formatNumberTwoDecimals(shipping)}`}</p>
           </Delivery>
           <Total>
             <span>Total</span>
-            <p>{`R$${totalOrder.toFixed(2).replace('.', ',')}`}</p>
+            <p>{`R$${formatNumberTwoDecimals(totalOrder)}`}</p>
           </Total>
-          <button type="submit" disabled={submitOrderButtonDisabled}>
+          <button type="submit" disabled={isCartEmpty}>
             Confirmar pedido
           </button>
         </PriceSummary>

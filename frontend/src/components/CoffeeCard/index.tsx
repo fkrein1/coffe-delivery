@@ -1,6 +1,7 @@
 import { ShoppingCart } from 'phosphor-react';
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { formatNumberTwoDecimals } from '../../utils/formatNumberTwoDecimals';
 import {
   AddtoCartButton,
   AddToCartContainer,
@@ -73,7 +74,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
       <Title>{props.name}</Title>
       <Description>{props.description}</Description>
       <Price>
-        R$ <strong>{props.price.toFixed(2).replace('.', ',')}</strong>
+        R$ <strong>{formatNumberTwoDecimals(props.price)}</strong>
       </Price>
       <AddToCartContainer>
         <QtySelectors>

@@ -16,7 +16,9 @@ export const HeroContainer = styled.section`
   background-size: 100% auto;
   @media (max-width: 768px) {
     padding-block: 46px;
-    padding-inline: 80px;
+    padding-inline: 40px;
+    background-image: none;
+    backdrop-filter: none;
   }
 `
 
@@ -38,6 +40,7 @@ export const BenefitsContainer = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-title']};
     margin-bottom: 16px;
+    
   }
   p {
     font-weight: 400;
@@ -45,6 +48,13 @@ export const BenefitsContainer = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 32px;
+    }
+  }
+
 `;
 
 export const BenefitsList = styled.ul`

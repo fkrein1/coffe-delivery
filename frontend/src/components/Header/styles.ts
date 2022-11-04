@@ -17,7 +17,7 @@ export const HeaderContainer = styled.header`
   }
 
   @media (max-width: 768px) {
-    padding-inline: 80px;
+    padding-inline: 40px;
     padding-block: 20px;
   }
 `;

@@ -96,7 +96,7 @@ export const Name = styled.p`
   }
 `;
 
-export const RemoveButton = styled.div`
+export const RemoveButton = styled.button`
   display: flex;
   gap: 7px;
   align-items: center;

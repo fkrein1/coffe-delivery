@@ -5,6 +5,12 @@ import { OrderInputs } from './Components/OrderInputs';
 import { OrderSummary } from './Components/OrderSummary';
 import { CheckoutForm } from './styles';
 
+export enum PaymentOptions {
+  Credit = 'Credit',
+  Debit = 'Debit',
+  Cash = 'Cash',
+}
+
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().min(8, 'Informe o CEP'),
   street: zod.string().min(1, 'Informe a rua'),
@@ -13,7 +19,11 @@ const checkoutFormValidationSchema = zod.object({
   neighborhood: zod.string().min(1, 'Informe o bairro'),
   city: zod.string().min(1, 'Informe a cidade'),
   state: zod.string().min(2, 'Informe o UF'),
-  payment: zod.string().min(1, 'Informe o meio de pagamento'),
+  payment: zod.nativeEnum(PaymentOptions, {
+    errorMap: () => {
+      return { message: 'Informe o método de pagamento' };
+    },
+  }),
 });
 
 export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>;
@@ -29,13 +39,16 @@ export function Checkout() {
       neighborhood: '',
       city: '',
       state: '',
-      payment: '',
     },
   });
 
   const { handleSubmit } = checkoutForm;
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => console.log(data);
+
+  function handleSubmitOrder(data: CheckoutFormData) {
+    // console.log(data);
+  }
 
   return (
     <CheckoutForm onSubmit={handleSubmit(onSubmit)}>
