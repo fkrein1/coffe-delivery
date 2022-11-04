@@ -11,4 +11,4 @@ Have your favorite coffee delivered to your house.
 <a href="https://coffee-delivery-lyart.vercel.app/">Demo</a>
 <br>
 <br>
-<a href="https://coffee-delivery-lyart.vercel.app/"><img src="./coffee-delivery.png.png"/></a>
+<a href="https://coffee-delivery-lyart.vercel.app/"><img src="./coffee-delivery.png"/></a>
