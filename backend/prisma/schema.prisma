@@ -23,7 +23,7 @@ model Order {
   id             String           @id @default(uuid())
   cep            String
   street         String
-  number         String?
+  number         String
   complement     String?
   neighborhood   String
   city           String
