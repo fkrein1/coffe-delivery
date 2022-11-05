@@ -65,6 +65,7 @@ const OrderItems = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 
     svg {
       color: ${(props) => props.theme.white};
