@@ -9,7 +9,7 @@ const findAllCoffeesController = new FindAllCoffeesController();
 const createOrderController = new CreateOrderController();
 const findOrderByIdController = new FindOrderByIdController();
 
-routes.use('/coffees', findAllCoffeesController.handle);
+routes.get('/coffees', findAllCoffeesController.handle);
 routes.post('/orders', createOrderController.handle);
 routes.get('/orders/:id', findOrderByIdController.handle);
 
